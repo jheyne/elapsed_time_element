@@ -136,19 +136,28 @@ class TimeElapsed extends PolymerElement {
     new _RefreshTimer.seconds(refreshInSeconds).unregister(this);
   }  
   
+  void dateTimeChanged() {
+    refreshDates();
+  }
+  
   void refreshDates([Timer timer]) {
-    var isVerbose = "true" == verbose;
-    var elapsed = Util.formatDate(dateTime, short: !isVerbose);
-    if (!isVerbose && lessThanOneMinute == LT_1_MIN_VERBOSE) {
-      lessThanOneMinute = LT_1_MIN_SUCCINCT;
+    if (dateTime != null) {
+      var isVerbose = "true" == verbose;
+      var elapsed = Util.formatDate(dateTime, short: !isVerbose);
+      if (!isVerbose && lessThanOneMinute == LT_1_MIN_VERBOSE) {
+        lessThanOneMinute = LT_1_MIN_SUCCINCT;
+      }
+      elapsedTime = elapsed.isEmpty ? lessThanOneMinute : elapsed;
+      tooltipDate = new DateFormat(tooltipFormat).format(dateTime);
+      if (styleCallback != null) {
+        DateTime now = new DateTime.now();
+        Duration duration = now.isBefore(dateTime) ? dateTime.difference(now) : now.difference(dateTime);
+        elapsedTimeStyle = styleCallback(dateTime, duration);
+      }    
+    } else {
+      elapsedTime = "";
+      tooltipDate = "";
     }
-    elapsedTime = elapsed.isEmpty ? lessThanOneMinute : elapsed;
-    tooltipDate = new DateFormat(tooltipFormat).format(dateTime);
-    if (styleCallback != null) {
-      DateTime now = new DateTime.now();
-      Duration duration = now.isBefore(dateTime) ? dateTime.difference(now) : now.difference(dateTime);
-      elapsedTimeStyle = styleCallback(dateTime, duration);
-    }    
   }
   
 }

@@ -57,8 +57,8 @@ class _RefreshTimer {
 @CustomTag('elapsed-time')
 class TimeElapsed extends PolymerElement {
   
-  static String LT_1_MIN_SUCCINCT = '> 1m';
-  static String LT_1_MIN_VERBOSE = '> 1 minute';
+  static String LT_1_MIN_SUCCINCT = '< 1m';
+  static String LT_1_MIN_VERBOSE = '< 1 minute';
     
   /*
    * The date supplied by the user (defaults to 'now')

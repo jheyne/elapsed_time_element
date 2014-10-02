@@ -1,0 +1,13 @@
+name: elapsed_time_element
+version: 0.10.0
+author: Jim Heyne <jheyne@gmail.com>
+description: Displays time elapsed for a DateTime. For example, 1 day 2 hours 3 minutes.
+dependencies:
+  core_elements: any
+  intl: any
+  polymer: any
+  unittest: any
+transformers:
+- polymer:
+    entry_points:
+    - example/app.html

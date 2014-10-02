@@ -1,0 +1,51 @@
+<!-- import polymer-element's definition -->
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="../../packages/elapsed_time_element/elapsed_time.html">
+
+<polymer-element name="elapsed-time-demo" >
+  <template>
+    <style>
+      p {
+        color: DarkSlateGray ;
+      }
+      elapsed-time {
+        margin-left: 1em;
+        padding: 5px 12px;
+        background-color: LemonChiffon;
+        border: solid thin;
+      }
+    </style>
+    <h1>Time Elapsed Demo</h1>
+    <div><b>Please wait and watch. The display of DateTime values will update every minute.</b></div>
+    <div></div>
+    <p>This is the simplest case. DateTime.now() is the default time, and no attributes are set.</p>
+    <elapsed-time></elapsed-time> 
+    <div></div>
+    <p>Units like 'minutes' and 'hours' can be abbreviated for a more succinct presentation. Set <b>"verbose"</b> to "false".</p>
+    <elapsed-time verbose="false"></elapsed-time> 
+    <div></div>
+    <p>A <b>prefix and/or suffix</b> can be specified (for example, "happened " and " ago").</p>
+    <elapsed-time prefix="happened " suffix=" ago"></elapsed-time> 
+    <div></div>
+    <p>A message can be specified when the elapse is <b>less than one minute</b> (for example, as "...moments ago").</p>
+    <elapsed-time lessThanOneMinute="...moments ago"></elapsed-time> 
+    <div></div>
+    <p>A <b>specific date</b> can be specified (for example, two hours ago).</p>
+    <elapsed-time dateTime="{{twoHoursAgo}}"></elapsed-time> 
+    <div></div>
+    <p>A <b>future specific date</b> can be specified (for example, two hours from now).</p>
+    <elapsed-time dateTime="{{twoHoursAhead}}"></elapsed-time> 
+    <div></div>
+    <p>The <b>CSS style</b> of the elapsed time can be explicitly set (for example, "color: red;").</p>
+    <elapsed-time elapsedTimeStyle="color: red;"></elapsed-time> 
+    <div></div>
+    <p><b>CSS style</b> can be <b>dynamically</b> configured via a callback (for example, bold red for 2 hours or more; otherwise, green italic).</p>
+    <elapsed-time styleCallback="{{colorTime}}"></elapsed-time> 
+    <div></div>
+    <p>The <b>tooltip icon</b> can be altered to another core-icons option (for example, to "warning").</p>
+    <elapsed-time tooltipIcon="warning"></elapsed-time> 
+    <div></div>
+  </template>
+  <script type="application/dart" src="elapsed_time_demo.dart"></script>
+</polymer-element>
+

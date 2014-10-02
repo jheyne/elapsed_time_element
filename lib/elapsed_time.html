@@ -1,0 +1,28 @@
+<link rel="import" href="../../packages/polymer/polymer.html">
+<link rel="import" href="../../packages/core_elements/core_tooltip.html">
+<link rel="import" href="../../packages/core_elements/core_icons.html">
+<link rel="import" href="../../packages/core_elements/core_icon.html">
+
+<polymer-element name="elapsed-time" attributes="verbose dateTime refreshInSeconds tooltipFormat styleCallback elapsedTimeStyle elapsedTime tooltipDate tooltipIcon lessThanOneMinute suffix prefix">
+  <template>
+    <style>
+      #elapsedTime: {
+      }
+      #tooltipDate: {
+        padding-right: 7px;
+      }
+    </style>
+    
+    
+    <core-tooltip>
+      <div id="elapsedTime" style="{{elapsedTimeStyle}}">{{prefix}}{{elapsedTime}}{{suffix}}</div>
+        <div tip layout horizontal center>
+          <core-icon class="rich" icon="{{tooltipIcon}}" style="color:white; margin-right: 7px;" ></core-icon>
+          <span id="tooltipDate">{{tooltipDate}}</span>
+        </div>
+    </core-tooltip>
+              
+  </template>
+  <script type="application/dart" src="elapsed_time.dart"></script>
+</polymer-element>
+

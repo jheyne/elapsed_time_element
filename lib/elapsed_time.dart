@@ -73,7 +73,7 @@ class TimeElapsed extends PolymerElement {
   /*
    * the format used to present the date in the tooltip
    */
-  @published String tooltipFormat = 'yyyy-MM-dd H:m:s';
+  @published String tooltipFormat = 'yyyy-MM-dd H:mm:ss';
   
 /*
  * Callback which supplies CSS style for the time elapse display.

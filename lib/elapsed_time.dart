@@ -136,6 +136,10 @@ class TimeElapsed extends PolymerElement {
     new _RefreshTimer.seconds(refreshInSeconds).unregister(this);
   }  
   
+  void dateTimeChanged() {
+    refreshDates();
+  }
+  
   void refreshDates([Timer timer]) {
     if (dateTime != null) {
       var isVerbose = "true" == verbose;

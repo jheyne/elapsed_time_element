@@ -52,18 +52,29 @@ class _RefreshTimer {
 }
 
 /**
- * A Polymer click counter element.
+ * A Polymer elapsed time element.
  */
 @CustomTag('elapsed-time')
 class TimeElapsed extends PolymerElement {
   
-  static String LT_1_MIN_SUCCINCT = '> 1m';
-  static String LT_1_MIN_VERBOSE = '> 1 minute';
+  static String LT_1_MIN_SUCCINCT = '< 1m';
+  static String LT_1_MIN_VERBOSE = '< 1 minute';
     
   /*
    * The date supplied by the user (defaults to 'now')
    */
-  @published DateTime dateTime = new DateTime.now();
+  DateTime _dateTime = new DateTime.now();
+  
+  @published get dateTime => _dateTime;
+  set dateTime(DateTime date) {
+    _dateTime = date;
+    refreshDates();
+  }
+
+  /*
+   * The message to show if no time is specified (defaults to empty string)
+   */
+  @published String noTimeSpecified = '';
   
 /*
  * The interval for refreshing the display (defaults to 30 seconds)
@@ -73,7 +84,7 @@ class TimeElapsed extends PolymerElement {
   /*
    * the format used to present the date in the tooltip
    */
-  @published String tooltipFormat = 'yyyy-MM-dd H:m:s';
+  @published String tooltipFormat = 'yyyy-MM-dd H:mm:ss';
   
 /*
  * Callback which supplies CSS style for the time elapse display.
@@ -137,17 +148,22 @@ class TimeElapsed extends PolymerElement {
   }  
   
   void refreshDates([Timer timer]) {
+    if (_dateTime == null) {
+      elapsedTime = noTimeSpecified;
+      tooltipDate = noTimeSpecified;
+      return;
+    }
     var isVerbose = "true" == verbose;
-    var elapsed = Util.formatDate(dateTime, short: !isVerbose);
+    var elapsed = Util.formatDate(_dateTime, short: !isVerbose);
     if (!isVerbose && lessThanOneMinute == LT_1_MIN_VERBOSE) {
       lessThanOneMinute = LT_1_MIN_SUCCINCT;
     }
-    elapsedTime = elapsed.isEmpty ? lessThanOneMinute : elapsed;
-    tooltipDate = new DateFormat(tooltipFormat).format(dateTime);
+    elapsedTime = prefix + (elapsed.isEmpty ? lessThanOneMinute : elapsed) + suffix;
+    tooltipDate = new DateFormat(tooltipFormat).format(_dateTime);
     if (styleCallback != null) {
       DateTime now = new DateTime.now();
-      Duration duration = now.isBefore(dateTime) ? dateTime.difference(now) : now.difference(dateTime);
-      elapsedTimeStyle = styleCallback(dateTime, duration);
+      Duration duration = now.isBefore(_dateTime) ? _dateTime.difference(now) : now.difference(_dateTime);
+      elapsedTimeStyle = styleCallback(_dateTime, duration);
     }    
   }
   

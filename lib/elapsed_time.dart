@@ -2,6 +2,7 @@ import 'package:polymer/polymer.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:elapsed_time_element/util.dart';
+import 'all_messages.dart';
 
 typedef String StyleCallbackFunction(DateTime dateTime, Duration duration);
 
@@ -56,10 +57,7 @@ class _RefreshTimer {
  */
 @CustomTag('elapsed-time')
 class TimeElapsed extends PolymerElement {
-  
-  static String LT_1_MIN_SUCCINCT = '< 1m';
-  static String LT_1_MIN_VERBOSE = '< 1 minute';
-    
+      
   /*
    * The date supplied by the user (defaults to 'now')
    */
@@ -95,7 +93,7 @@ class TimeElapsed extends PolymerElement {
 /*
  * The string to show if the time elapsed is less than one minute
  */
-  @published String lessThanOneMinute = LT_1_MIN_VERBOSE;
+  @published String lessThanOneMinute = lessThanOneMinuteVerbose();
   
 /*
  * Directly sets the CSS for the elapsed time.
@@ -155,8 +153,8 @@ class TimeElapsed extends PolymerElement {
     }
     var isVerbose = "true" == verbose;
     var elapsed = Util.formatDate(_dateTime, short: !isVerbose);
-    if (!isVerbose && lessThanOneMinute == LT_1_MIN_VERBOSE) {
-      lessThanOneMinute = LT_1_MIN_SUCCINCT;
+    if (!isVerbose && lessThanOneMinute == lessThanOneMinuteVerbose()) {
+      lessThanOneMinute = lessThanOneMinuteSuccinct();
     }
     elapsedTime = prefix + (elapsed.isEmpty ? lessThanOneMinute : elapsed) + suffix;
     tooltipDate = new DateFormat(tooltipFormat).format(_dateTime);

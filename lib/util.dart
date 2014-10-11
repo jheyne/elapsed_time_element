@@ -1,5 +1,6 @@
 library util;
 
+import 'all_messages.dart';
 
 class Util {
   
@@ -15,23 +16,22 @@ class Util {
     var inDays = d.inDays;
     StringBuffer b = new StringBuffer();
     if(inDays > 0) {
-      b.write(inDays);
-      b.write(short ? 'd ' : (inDays > 1 ? ' days ' : ' day '));      
+      b.write(short ? '${inDays}${daysSuccinct(inDays)}' : daysVerbose(inDays));  
+      b.write(' ');  
     }
     var hours = inHours - inDays * Duration.HOURS_PER_DAY;
     if(hours > 0) {
-      b.write(hours);
-      b.write(short ? 'h ' : (hours > 1 ? ' hours ' : ' hour ')); 
+      b.write(short ? '${hours}${hoursSuccinct(hours)}' : hoursVerbose(hours)); 
+      b.write(' ');  
     }    
     var minutes = inMinutes - inHours * Duration.MINUTES_PER_HOUR;
     if(minutes > 0) {
-      b.write(minutes);
-      b.write(short ? 'm ' : (minutes > 1 ? ' minutes ' : ' minute ')); 
+      b.write(short ? '${minutes}${minutesSuccinct(minutes)}' : minutesVerbose(minutes)); 
+      b.write(' ');  
     }    
     var seconds = inSeconds - inMinutes * Duration.SECONDS_PER_MINUTE;
     if(includeSeconds && seconds > 0) {
-      b.write(seconds);
-      b.write(short ? 's' : (seconds > 1 ? ' seconds ' : ' second ')); 
+      b.write(short ? '${seconds}${secondsSuccinct(seconds)}' : secondsVerbose(seconds)); 
     }    
     return b.toString().trim();
   }

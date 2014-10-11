@@ -74,4 +74,3 @@ Usage
     <elapsed-time noTimeSpecified="not available" ></elapsed-time> 
  ```
  
- 

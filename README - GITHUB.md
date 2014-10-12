@@ -7,7 +7,7 @@ Compares a DateTime to the current time and displays the elapsed time, such as
   
 Demonstration code can be exercised by running example/app.html in Dartium. This references a demo web component, which in turn references the 'elapsed-time' element.
 
-Internationalization for some locales (de, en, es, fr, it, pt) is supported by setting the **selectedLocale** attribute. The example app how to set the locale using the user's browder language setting (not always an ideal strategy).
+Internationalization for some locales (de, en, es, fr, it, pt) is supported by setting the **selectedLocale** attribute. The example app how to set the locale using the user's browser language setting (not always an ideal strategy).
 
 Usage
 -------

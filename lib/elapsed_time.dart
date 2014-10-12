@@ -1,8 +1,10 @@
 import 'package:polymer/polymer.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'dart:async';
 import 'package:elapsed_time_element/util.dart';
 import 'all_messages.dart';
+import 'i18/messages_all.dart' as i18;
 
 typedef String StyleCallbackFunction(DateTime dateTime, Duration duration);
 
@@ -77,7 +79,8 @@ class TimeElapsed extends PolymerElement {
 /*
  * The interval for refreshing the display (defaults to 30 seconds)
  */
-  @published int refreshInSeconds = 30;    
+  @published int refreshInSeconds = 30;
+  
   
   /*
    * the format used to present the date in the tooltip
@@ -91,9 +94,9 @@ class TimeElapsed extends PolymerElement {
   @published StyleCallbackFunction styleCallback;
   
 /*
- * The string to show if the time elapsed is less than one minute
+ * The string FROM USER to show if the time elapsed is less than one minute
  */
-  @published String lessThanOneMinute = lessThanOneMinuteVerbose();
+  @published String lessThanOneMinute = '';
   
 /*
  * Directly sets the CSS for the elapsed time.
@@ -129,10 +132,31 @@ class TimeElapsed extends PolymerElement {
   /*
    * Specifies whether to show abbreviations or full words for minutes, hours, etc.
    */
-  @published String verbose = "true";
+  @published String verbose = "true";  
+
+  @observable String selectedLocale;
+
+  @observable bool includeSeconds = false;
   
   TimeElapsed.created() : super.created() {
+    selectedLocaleChanged();
   }
+
+  // Polymer should call this method automatically if the value of
+  // [selectedLocale] changes.
+  void selectedLocaleChanged() {
+    if (selectedLocale == 'en_US') {
+      updateLocale('en_US');
+      return;
+    }
+    Util.initializeLocale(selectedLocale).then((List) => updateLocale(selectedLocale));
+  }
+
+  void updateLocale(localeName) {
+    Intl.defaultLocale = selectedLocale;
+    refreshDates();
+  }
+
   
   void attached() {
     super.attached();
@@ -151,12 +175,9 @@ class TimeElapsed extends PolymerElement {
       tooltipDate = noTimeSpecified;
       return;
     }
-    var isVerbose = "true" == verbose;
-    var elapsed = Util.formatDate(_dateTime, short: !isVerbose);
-    if (!isVerbose && lessThanOneMinute == lessThanOneMinuteVerbose()) {
-      lessThanOneMinute = lessThanOneMinuteSuccinct();
-    }
-    elapsedTime = prefix + (elapsed.isEmpty ? lessThanOneMinute : elapsed) + suffix;
+    bool isVerbose = "true" == verbose;
+    String elapsed = Util.formatDate(_dateTime, short: !isVerbose, includeSeconds: includeSeconds);
+    elapsedTime = prefix + (elapsed.isEmpty ? lessThanOneMinuteMessage(isVerbose) : elapsed) + suffix;
     tooltipDate = new DateFormat(tooltipFormat).format(_dateTime);
     if (styleCallback != null) {
       DateTime now = new DateTime.now();
@@ -165,5 +186,11 @@ class TimeElapsed extends PolymerElement {
     }    
   }
   
+  String lessThanOneMinuteMessage(bool isVerbose) {
+    if (lessThanOneMinute.isNotEmpty) return lessThanOneMinute;
+    return isVerbose ? lessThanOneMinuteVerbose() : lessThanOneMinuteSuccinct();
+  }
+  
 }
+
 

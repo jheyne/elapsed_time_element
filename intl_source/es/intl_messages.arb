@@ -1,0 +1,90 @@
+{
+  "lessThanOneMinuteSuccinct": "< 1m",
+  "@lessThanOneMinuteSuccinct": {
+    "description": "Succinct indication that elapsed time was less than one minute",
+    "type": "text",
+    "placeholders": {}
+  },
+  "lessThanOneMinuteVerbose": "< 1 minuto",
+  "@lessThanOneMinuteVerbose": {
+    "description": "Verbose indication that elapsed time was less than one minute",
+    "type": "text",
+    "placeholders": {}
+  },
+  "daysSuccinct": "{days, plural, =0 {} =1 {d} other {d}}",
+  "@daysSuccinct": {
+    "description": "\"Succinct indication of the number of days. Do NOT insert $days\"",
+    "type": "text",
+    "placeholders": {
+      "days": {
+        "example": "23"
+      }
+    }
+  },
+  "daysVerbose": "{days, plural, =0 {} =1 {{days} día} other {{days} días}}",
+  "@daysVerbose": {
+    "description": "Verbose indication of the number of days.",
+    "type": "text",
+    "placeholders": {
+      "days": {
+        "example": "23"
+      }
+    }
+  },
+  "hoursSuccinct": "{hours, plural, =0 {} =1 {h} other {h}}",
+  "@hoursSuccinct": {
+    "description": "\"Succinct indication of the number of hours. Do NOT insert $hours\"",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "example": "7"
+      }
+    }
+  },
+  "hoursVerbose": "{hours, plural, =0 {} =1 {{hours} hora} other {{hours} horas}}",
+  "@hoursVerbose": {
+    "description": "Verbose indication of the number of days.",
+    "type": "text",
+    "placeholders": {
+      "hours": {
+        "example": "23"
+      }
+    }
+  },
+  "minutesSuccinct": "{minutes, plural, =0 {} =1 {                                            m} other {                                             m}}",
+  "@minutesSuccinct": {
+    "description": "\"Succinct indication of the number of minutes. Do NOT insert $minutes\"",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "example": "7"
+      }
+    }
+  },
+  "minutesVerbose": "{minutes, plural, =0 {} =1 {{minutes} minuto} other {{minutes} minutos}}",
+  "@minutesVerbose": {
+    "description": "Verbose indication of the number of minutes.",
+    "type": "text",
+    "placeholders": {
+      "minutes": {
+        "example": "23"
+      }
+    }
+  },
+  "secondsSuccinct": "{seconds, plural, =0 {} =1 {s} other {s}}",
+  "@secondsSuccinct": {
+    "description": "\"Succinct indication of the number of seconds. Do NOT insert $seconds\"",
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "secondsVerbose": "{seconds, plural, =0 {} =1 {{seconds} segundo} other {{seconds} segundos}}",
+  "@secondsVerbose": {
+    "description": "Verbose indication of the number of seconds.",
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  }
+}

@@ -1,6 +1,9 @@
 library util;
 
 import 'all_messages.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'i18/messages_all.dart' as i18;
+import 'dart:async';
 
 class Util {
   
@@ -34,6 +37,13 @@ class Util {
       b.write(short ? '${seconds}${secondsSuccinct(seconds)}' : secondsVerbose(seconds)); 
     }    
     return b.toString().trim();
+  }
+  
+
+  static Future<List> initializeLocale(String selectedLocale) {    
+    var messages = i18.initializeMessages(selectedLocale);
+    var date = initializeDateFormatting(selectedLocale, null);
+    return Future.wait([messages, date]);
   }
   
 }

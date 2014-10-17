@@ -1,5 +1,4 @@
 import 'package:polymer/polymer.dart';
-//import '../lib/time_lapsed.dart';
 import 'package:elapsed_time_element/elapsed_time.dart';
 import 'dart:html';
 

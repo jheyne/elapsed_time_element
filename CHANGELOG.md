@@ -2,6 +2,8 @@ Change Log
 ==========
 
 
+**2014-10-10** [0.12.1] - upgraded to 1.7.2 Dart editor
+
 **2014-10-10** [0.12.0] - set up for internationalization
 
 **2014-10-01** - issues raised by Oliver addressed

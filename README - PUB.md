@@ -24,7 +24,7 @@ Usage
     <elapsed-time verbose="false"></elapsed-time> 
 ```
 
-* A ""prefix"" and/or **suffix** can be specified (for example, " ago").
+* A **prefix** and/or **suffix** can be specified (for example, " ago").
 
 ```
     <elapsed-time prefix="happened" suffix=" ago"></elapsed-time> 
@@ -76,3 +76,10 @@ Usage
 ```
     <elapsed-time noTimeSpecified="not available" ></elapsed-time> 
 ```
+
+* **Seconds** can be displayed and **refreshed** at at specific frequency.
+
+ ```
+    <elapsed-time dateTime="{{twoHoursAhead}}" selectedLocale="es" refreshInSeconds="5" includeSeconds="true" verbose="false" ></elapsed-time> 
+ ```
+ 

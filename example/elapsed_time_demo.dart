@@ -2,9 +2,7 @@ import 'package:polymer/polymer.dart';
 import 'package:elapsed_time_element/elapsed_time.dart';
 import 'dart:html';
 
-/**
- * demonstrates usage of time-lapsed element.
- */
+/// demonstrates usage of time-lapsed element.
 @CustomTag('elapsed-time-demo')
 class TimeElapsedDemo extends PolymerElement {
   @observable String selectedLocale;

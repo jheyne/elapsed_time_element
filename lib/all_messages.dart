@@ -20,7 +20,7 @@ String daysSuccinct(int days) => Intl.message(
           other: 'd')}",
     name: "daysSuccinct",
     args: [days],
-    desc: "Succinct indication of the number of days. Do NOT insert $days",
+    desc: "Succinct indication of the number of days (such as 'd' in 1d 2h 3m'). Do NOT insert $days",
     examples: {'days': 23});
 
 String daysVerbose(int days) => Intl.message(
@@ -41,7 +41,7 @@ String hoursSuccinct(int hours) => Intl.message(
           other: 'h')}",
     name: "hoursSuccinct",
     args: [hours],
-    desc: "Succinct indication of the number of hours. Do NOT insert $hours",
+    desc: "Succinct indication of the number of hours (such as 'h' in 1d 2h 3m'). Do NOT insert $hours",
     examples: {'hours': 7});
 
 String hoursVerbose(int hours) => Intl.message(
@@ -62,7 +62,7 @@ String minutesSuccinct(int minutes) => Intl.message(
           other: 'm')}",
     name: "minutesSuccinct",
     args: [minutes],
-    desc: "Succinct indication of the number of minutes. Do NOT insert $minutes",
+    desc: "Succinct indication of the number of minutes (such as 'm' in 1d 2h 3m'). Do NOT insert $minutes",
     examples: {'minutes': 7});
 
 String minutesVerbose(int minutes) => Intl.message(
@@ -83,7 +83,7 @@ String secondsSuccinct(int seconds) => Intl.message(
           other: 's')}",
     name: "secondsSuccinct",
     args: [seconds],
-    desc: "Succinct indication of the number of seconds. Do NOT insert $seconds",
+    desc: "Succinct indication of the number of seconds (such as 's' in 1d 2h 3m 30s'). Do NOT insert $seconds",
     examples: {'minutes': 7});
 
 String secondsVerbose(int seconds) => Intl.message(

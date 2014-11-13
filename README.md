@@ -12,74 +12,74 @@ Internationalization for some locales (de, en, es, fr, it, pt) is supported by s
 Usage
 -------
 
-* This is the simplest case. DateTime.now() is the default time, and no attributes are set.
+1. This is the simplest case. DateTime.now() is the default time, and no attributes are set.
 
-```
-    <elapsed-time></elapsed-time> 
-```
-
-* Units like 'minutes' and 'hours' can be abbreviated for a more succinct presentation. Set **"verbose"** to "false".
-
-```
-    <elapsed-time verbose="false"></elapsed-time> 
+ ```html
+        <elapsed-time></elapsed-time> 
 ```
 
-* A **prefix** and/or **suffix** can be specified (for example, " ago").
+2. Units like 'minutes' and 'hours' can be abbreviated for a more succinct presentation. Set **"verbose"** to "false".
 
-```
-    <elapsed-time prefix="happened" suffix=" ago"></elapsed-time> 
+ ```html
+        <elapsed-time verbose="false"></elapsed-time> 
 ```
 
-* A message can be specified when the elapse is **less than one minute** (for example, as "moments ago").
+3. A **prefix** and/or **suffix** can be specified (for example, " ago").
 
+ ```html
+        <elapsed-time prefix="happened" suffix=" ago"></elapsed-time> 
 ```
+
+4. A message can be specified when the elapse is **less than one minute** (for example, as "moments ago").
+
+ ```html
     <elapsed-time lessThanOneMinute="moments ago"></elapsed-time> 
-```
+ ```
 
-* A **specific date** can be specified (for example, two hours ago).
+5. A **specific date** can be specified (for example, two hours ago).
 
-```
+ ```html
     <elapsed-time dateTime="{{twoHoursAgo}}"></elapsed-time> 
-```
+ ```
 
-* A **future specific date** can be specified (for example, two hours from now).
+6. A **future specific date** can be specified (for example, two hours from now).
 
-```
+ ```html
     <elapsed-time dateTime="{{twoHoursAhead}}"></elapsed-time> 
-```
+ ```
+7. The **CSS style** of the elapsed time can be explicitly set (for example, "color: red;").
 
-* The **CSS style** of the elapsed time can be explicitly set (for example, "color: red;").
-
-```
+ ```html
     <elapsed-time elapsedTimeStyle="color: red;"></elapsed-time> 
-```
+ ```
 
-* **CSS style** can be **dynamically** configured via a callback (for example, bold red for 2 hours or more, otherwise green italic).
+8. **CSS style** can be **dynamically** configured via a callback (for example, bold red for 2 hours or more, otherwise green italic).
 
-```
+ ```html
     <elapsed-time styleCallback="{{colorTime}}"></elapsed-time> 
-```
+ ```
 
    Dart code:
 
-
-    @published StyleCallbackFunction colorTime = (DateTime dateTime, Duration duration) => duration.inMinutes >= 2 ? "color: red; font-weight: bold" : "color: green; font-style: italic";  
-
-* The **tooltip icon** can be altered to another core-icons option (for example, to "warning").
-
-```
-    <elapsed-time tooltipIcon="warning"></elapsed-time> 
-```
-
-* If the **date is null** a custom message can be displayed (the default shows nothing).
-
-```
-    <elapsed-time noTimeSpecified="not available" ></elapsed-time> 
-```
-
-* **Seconds** can be displayed and **refreshed** at at specific frequency.
-
+ ```dart
+@published StyleCallbackFunction colorTime = (DateTime dateTime, Duration duration) => duration.inMinutes >= 2 ? "color: red; font-weight: bold" : "color: green; font-style: italic";  
  ```
+9. The **tooltip icon** can be altered to another core-icons option (for example, to "warning").
+
+ ```html
+    <elapsed-time tooltipIcon="warning"></elapsed-time> 
+ ```
+
+10. If the **date is null** a custom message can be displayed (the default shows nothing).
+
+ ```html
+    <elapsed-time noTimeSpecified="not available" ></elapsed-time> 
+ ```
+ 
+11. **Seconds** can be displayed and **refreshed** at at specific frequency.
+
+ ```html
     <elapsed-time dateTime="{{twoHoursAhead}}" selectedLocale="es" refreshInSeconds="5" includeSeconds="true" verbose="false" ></elapsed-time> 
  ```
+ 
  
